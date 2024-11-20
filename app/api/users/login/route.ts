@@ -24,7 +24,7 @@ export async function GET(req: NextRequest, res: any) {
 
     await connectMongo();
 
-    const user: USER_TYPE = await User.findOne({ phone: String(phone) }).exec();
+    const user: any = await User.findOne({ phone: String(phone) }).exec();
 
     if (user) {
       if (user.password === password) {
