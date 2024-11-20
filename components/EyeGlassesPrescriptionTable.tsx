@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TextBox from "./ui/TextBox";
 import { SERVER_RESPONSE, serverActions } from "@/actions/serverActions";
 import { CUSTOMER_TYPE } from "@/models/Customer";

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 
 type Props = {
   value?: string;
@@ -10,9 +10,11 @@ type Props = {
   textAlign?: "left" | "center" | "right";
   label?: string;
   className?: string;
+  onFocus?: () => void;
 };
 
 const TextBox = (props: Props) => {
+  const txtRef = useRef<HTMLInputElement>(null);
   const handleChange = (e: any) => {
     if (props.setValue) {
       props.setValue(e.target.value);
@@ -20,6 +22,14 @@ const TextBox = (props: Props) => {
   };
 
   const alignText = props.textAlign ? `text-${props.textAlign}` : "text-left";
+
+  const handleFocus = () => {
+    if (txtRef.current) {
+      txtRef.current.select();
+    }
+
+    if (props.onFocus) props.onFocus();
+  };
 
   return (
     <div className="w-full relative">
@@ -29,6 +39,8 @@ const TextBox = (props: Props) => {
         </div>
       )}
       <input
+        onFocus={handleFocus}
+        ref={txtRef}
         className={`w-full h-full p-2 ${alignText} appearance-none border border-zinc-200 outline-none ring-0 ${
           props.className && props.className
         }`}
