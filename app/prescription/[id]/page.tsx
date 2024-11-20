@@ -3,6 +3,15 @@ import { connectMongo } from "@/lib/mongo";
 import { Prescription, PRESCRIPTION_TYPE } from "@/models/Prescription";
 import React from "react";
 
+export const generateStaticParams = async () => {
+  await connectMongo();
+  const prescriptions = await Prescription.find({}).exec();
+
+  return prescriptions.map((prescription) => ({
+    id: String(prescription._id),
+  }));
+};
+
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -12,12 +21,3 @@ const page = (props: Props) => {
 };
 
 export default page;
-
-export const generateStaticParams = async () => {
-  await connectMongo();
-  const prescriptions = await Prescription.find({}).exec();
-
-  return prescriptions.map((prescription) => ({
-    id: String(prescription._id),
-  }));
-};
