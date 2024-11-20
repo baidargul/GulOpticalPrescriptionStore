@@ -35,7 +35,17 @@ const page = (props: Props) => {
     }
   };
 
-  const handleLogin = async () => {};
+  const handleLogin = async () => {
+    if (!phone || !password) return;
+    const response: SERVER_RESPONSE = await serverActions.user.login(
+      phone,
+      password
+    );
+    console.log(response);
+    if (response.status === 200) {
+      setMode("register");
+    }
+  };
 
   return (
     <div className="w-full min-h-[100dvh] select-none overflow-hidden bg-gradient-to-t from-black via-red-900 to-black flex justify-center items-center">

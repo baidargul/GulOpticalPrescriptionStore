@@ -1,3 +1,4 @@
+import { connectMongo } from "@/lib/mongo";
 import { User } from "@/models/Users";
 import { NextRequest } from "next/server";
 
@@ -20,7 +21,9 @@ export async function GET(req: NextRequest) {
       return new Response(JSON.stringify(response));
     }
 
-    const user = await User.findOne({ phone: phone }).exec();
+    await connectMongo();
+
+    const user = await User.findOne({ phone: String(phone) }).exec();
 
     if (user) {
       if (user.password === password) {
@@ -34,6 +37,11 @@ export async function GET(req: NextRequest) {
         response.data = null;
         return new Response(JSON.stringify(response));
       }
+    } else {
+      response.status = 400;
+      response.message = "No user found";
+      response.data = null;
+      return new Response(JSON.stringify(response));
     }
   } catch (error: any) {
     console.log("[SERVER ERROR]: " + error.message);
