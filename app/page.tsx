@@ -1,7 +1,10 @@
+import { connectMongo } from "@/lib/mongo";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  await connectMongo();
+
   return (
     <main className="flex min-h-[100dvh] max-h-[100dvh] overflow-hidden flex-col items-center justify-center p-24 select-none">
       <div>

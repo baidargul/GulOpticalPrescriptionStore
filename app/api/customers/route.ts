@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   };
 
   try {
-    await connectMongo();
+    // await connectMongo();
     const customers = await Customer.find({}).exec();
 
     response.status = 200;

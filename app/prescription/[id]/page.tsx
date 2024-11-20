@@ -14,7 +14,7 @@ const page = (props: Props) => {
 export default page;
 
 export const generateStaticParams = async () => {
-  await connectMongo();
+  // await connectMongo();
   const prescriptions = await Prescription.find({}).lean();
 
   return prescriptions.map((prescription) => ({
