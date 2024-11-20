@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   try {
     const BASE_URL =
       process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const { searchParams } = new URL(`${BASE_URL}${req.url}`);
+    const { searchParams } = new URL(`${req.url}`);
     const phone = searchParams.get("phone");
 
     await connectMongo();

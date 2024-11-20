@@ -13,9 +13,7 @@ async function listAll() {
 
 async function list(phone: string) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const response = await axios.get(
-    `${BASE_URL}/api/customers/phone?phone=${phone}`
-  );
+  const response = await axios.get(`/api/customers/phone?phone=${phone}`);
   // const response = await axios.get(`/api/customers/phone?phone=${phone}`);
   return response.data;
 }
