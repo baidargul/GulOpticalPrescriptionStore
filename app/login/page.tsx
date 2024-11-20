@@ -19,27 +19,27 @@ const page = (props: Props) => {
   };
 
   return (
-    <div className="w-full min-h-[100dvh] select-none overflow-hidden bg-gradient-to-t from-red-100 to-red-50 flex justify-center items-center">
+    <div className="w-full min-h-[100dvh] select-none overflow-hidden bg-gradient-to-t from-black via-red-900 to-black flex justify-center items-center">
       <div className="relative">
         <div
           title="Goto Home"
-          className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border"
+          className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border border-red-400 drop-shadow-sm"
         >
           <Link href={"/"}>
             <ChevronLeft
               size={20}
-              className="text-zinc-500 group-hover:text-white rotate-45"
+              className="text-red-700  group-hover:text-white hover:rotate-0 rotate-45 transition-all duration-500"
             />
           </Link>
         </div>
-        <div className="bg-white rounded-lg border-b-4 border-red-200 min-w-[320px] sm:w-full max-w-[700px] grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-[1fr_auto] place-items-center gap-2 p-4 sm:p-10">
+        <div className="bg-white rounded-lg min-w-[280px] sm:w-full max-w-[700px] grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-[1fr_auto] place-items-center sm:gap-2 p-4 sm:p-10">
           <div className="mb-0 sm:mb-0 flex flex-col gap-1 items-center">
             <Image
               src="/images/gul optical.png"
               width={200}
               height={200}
               alt="gul-opticals"
-              className="min-w-24 min-h-16 w-24 h-16 sm:w-44 sm:h-28  max-w-44 max-h-28 pointer-events-none select-none"
+              className="min-w-24 min-h-16 w-24 h-16 pr-0 sm:pr-2 sm:w-44 sm:h-28  max-w-44 max-h-28 pointer-events-none select-none"
             />
             <span className="text-red-600 tracking-wide text-sm sm:text-base">
               Shaheed Road, Jhang

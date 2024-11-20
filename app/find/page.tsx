@@ -68,7 +68,7 @@ export default function Page() {
           <Link href={"/"}>
             <ChevronLeft
               size={20}
-              className="text-zinc-500 group-hover:text-white rotate-45"
+              className="text-zinc-500 group-hover:text-white hover:rotate-0 rotate-45 transition-all duration-500"
             />
           </Link>
         </div>
