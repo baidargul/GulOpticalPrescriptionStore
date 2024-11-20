@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(`${req.url}`);
     const phone = searchParams.get("phone");
 
-    // await connectMongo();
+    await connectMongo();
     const customer = await Customer.find({ phone: phone }).exec();
 
     if (!customer) {

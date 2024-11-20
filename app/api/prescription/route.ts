@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
   };
 
   try {
-    // await connectMongo();
+    await connectMongo();
     const prescriptions = await Prescription.find({}).exec();
     response.status = 200;
     response.message = `${prescriptions.length} prescriptions found`;
