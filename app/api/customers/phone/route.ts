@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     await connectMongo();
     const customer = await Customer.find({ phone: phone }).exec();
 
-    if (!customer) {
+    if (!customer || customer.length === 0) {
       response.status = 404;
       response.message = "Customer not found";
       response.data = null;
