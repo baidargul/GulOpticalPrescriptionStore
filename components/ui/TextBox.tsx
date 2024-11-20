@@ -6,7 +6,7 @@ type Props = {
   setValue?: (value: string) => void;
   placeholder?: string;
   readonly?: boolean;
-  type?: "text" | "number";
+  type?: "text" | "number" | "password";
   textAlign?: "left" | "center" | "right";
   label?: string;
   className?: string;
@@ -34,7 +34,7 @@ const TextBox = (props: Props) => {
   return (
     <div className="w-full relative">
       {props.label && props.label.length > 0 && (
-        <div className="text-xs absolute -top-2 -left-2 px-4 text-zinc-500">
+        <div className="text-xs absolute -top-2 -left-2 px-4 text-zinc-500 bg-white">
           {props.label}
         </div>
       )}
