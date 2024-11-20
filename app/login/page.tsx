@@ -1,13 +1,20 @@
+"use client";
 import Button from "@/components/ui/Button";
 import TextBox from "@/components/ui/TextBox";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {};
 
 const page = (props: Props) => {
+  const [mode, setMode] = useState<"login" | "register">("login");
+
+  const toggleMode = () => {
+    setMode(mode === "login" ? "register" : "login");
+  };
+
   return (
-    <div className="w-full min-h-[100dvh] bg-gradient-to-t from-red-100 to-red-50 flex justify-center items-center">
+    <div className="w-full min-h-[100dvh] overflow-hidden bg-gradient-to-t from-red-100 to-red-50 flex justify-center items-center">
       <div className="bg-white rounded-lg border-b-4 border-red-200 min-w-[300px] sm:w-full max-w-[700px] grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-[1fr_auto] place-items-center gap-2 p-4 sm:p-10">
         <div className="mb-0 sm:mb-0">
           <Image
@@ -25,9 +32,12 @@ const page = (props: Props) => {
           <TextBox placeholder="Phone Number" type="number" label="Phone" />
           <TextBox placeholder="Password" type="password" label="Password" />
           <div className="w-full flex gap-1 items-end justify-between">
-            <Button>Login</Button>
-            <a className="text-red-700 text-sm text-nowrap px-5 cursor-pointer">
-              Create an account
+            <Button>{mode === "login" ? "Login" : "Signup"}</Button>
+            <a
+              onClick={toggleMode}
+              className="text-red-700 text-sm text-nowrap px-5 cursor-pointer"
+            >
+              {mode === "login" ? "Create an account" : "Have account?"}
             </a>
           </div>
         </div>
