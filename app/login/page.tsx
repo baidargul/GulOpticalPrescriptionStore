@@ -1,6 +1,8 @@
 "use client";
+import { SERVER_RESPONSE, serverActions } from "@/actions/serverActions";
 import Button from "@/components/ui/Button";
 import TextBox from "@/components/ui/TextBox";
+import { USER_TYPE } from "@/models/Users";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +19,23 @@ const page = (props: Props) => {
   const toggleMode = () => {
     setMode(mode === "login" ? "register" : "login");
   };
+
+  const handleSignUp = async () => {
+    const user: USER_TYPE = {
+      name,
+      phone,
+      password,
+      active: true,
+      isAdmin: false,
+    };
+
+    const response: SERVER_RESPONSE = await serverActions.user.create(user);
+    if (response.status === 200) {
+      setMode("login");
+    }
+  };
+
+  const handleLogin = async () => {};
 
   return (
     <div className="w-full min-h-[100dvh] select-none overflow-hidden bg-gradient-to-t from-black via-red-900 to-black flex justify-center items-center">
@@ -73,7 +92,13 @@ const page = (props: Props) => {
               setValue={setPassword}
             />
             <div className="w-full flex gap-1 items-end justify-between">
-              <Button>{mode === "login" ? "Login" : "Signup"}</Button>
+              <Button
+                onClick={() =>
+                  mode === "login" ? handleLogin() : handleSignUp()
+                }
+              >
+                {mode === "login" ? "Login" : "Signup"}
+              </Button>
               <a
                 onClick={toggleMode}
                 className="text-red-700 text-sm text-nowrap px-5 cursor-pointer"
