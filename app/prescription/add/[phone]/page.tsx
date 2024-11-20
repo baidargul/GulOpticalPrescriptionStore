@@ -9,7 +9,7 @@ type Props = {
 
 export const generateStaticParams = async () => {
   await connectMongo();
-  const customers = await Customer.find({}).lean();
+  const customers = await Customer.find({}).exec();
 
   return customers.map((customer) => ({
     phone: customer.phone,

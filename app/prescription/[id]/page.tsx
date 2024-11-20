@@ -15,7 +15,7 @@ export default page;
 
 export const generateStaticParams = async () => {
   await connectMongo();
-  const prescriptions = await Prescription.find({}).lean();
+  const prescriptions = await Prescription.find({}).exec();
 
   return prescriptions.map((prescription) => ({
     id: String(prescription._id),
