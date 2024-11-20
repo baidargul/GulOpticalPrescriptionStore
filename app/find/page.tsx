@@ -17,7 +17,7 @@ export default function Page() {
   };
 
   const handleNumberChange = (e: any) => {
-    setPhone(e.target.value);
+    setPhone(e.target.value.replace(/[^0-9]/g, ""));
   };
 
   const handleKeyDown = (e: any) => {
@@ -100,6 +100,11 @@ export default function Page() {
                   onChange={handleNumberChange}
                   onKeyDown={handleKeyDown}
                   onFocus={handleFocus}
+                  type="text"
+                  minLength={11}
+                  min={11}
+                  max={11}
+                  maxLength={11}
                   className="appearance-none w-full focus:tracking-wider transition-all duration-500 text-md sm:text-4xl border border-zinc-600 selection:bg-zinc-200 selection:text-zinc-600 text-black/80 rounded outline-none ring-0 p-2 text-center font-bold"
                 />
               </div>
