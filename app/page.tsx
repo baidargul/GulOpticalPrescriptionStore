@@ -1,4 +1,5 @@
 import { connectMongo } from "@/lib/mongo";
+import { CircleUser, Notebook, PersonStanding } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -26,12 +27,14 @@ export default async function Home() {
         </div>
         <div className="flex justify-between items-center gap-4 sm:gap-2 bg-gradient-to-t from-zinc-200 to-zinc-100 border-b-4 border-zinc-700 rounded-t-md p-3 sm:p-5">
           <Link href={"/find"}>
-            <div className="p-2 px-4 text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
-              My Prescription
+            <div className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
+              <Notebook size={16} />
+              Prescriptions
             </div>
           </Link>
           <Link href={"/login"}>
-            <div className="p-2 px-4 text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
+            <div className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
+              <CircleUser size={16} />
               Employee Login
             </div>
           </Link>
