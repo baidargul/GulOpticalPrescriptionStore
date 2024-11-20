@@ -482,6 +482,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.right.SPH}
                   value={String(
                     prescription.prescription?.distance?.right?.SPH
@@ -491,6 +492,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.right.CYL}
                   value={String(
                     prescription.prescription?.distance?.right?.CYL
@@ -500,6 +502,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.right.AXIS}
                   value={String(
                     prescription.prescription?.distance?.right?.AXIS
@@ -509,6 +512,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.right.ADD}
                   value={String(
                     prescription.prescription?.distance?.right?.ADD
@@ -518,6 +522,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.left.SPH}
                   value={String(prescription.prescription?.distance?.left?.SPH)}
                 />
@@ -525,6 +530,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.left.CYL}
                   value={String(prescription.prescription?.distance?.left?.CYL)}
                 />
@@ -532,6 +538,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.left.AXIS}
                   value={String(
                     prescription.prescription?.distance?.left?.AXIS
@@ -541,6 +548,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.distance.left.ADD}
                   value={String(prescription.prescription?.distance?.left?.ADD)}
                 />
@@ -556,6 +564,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
                 <TextBox
                   textAlign="center"
                   setValue={handleChange.near.right.SPH}
+                  type="number"
                   value={String(prescription.prescription?.near?.right?.SPH)}
                 />
               </td>
@@ -563,12 +572,14 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
                 <TextBox
                   textAlign="center"
                   setValue={handleChange.near.right.CYL}
+                  type="number"
                   value={String(prescription.prescription?.near?.right?.CYL)}
                 />
               </td>
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.near.right.AXIS}
                   value={String(prescription.prescription?.near?.right?.AXIS)}
                 />
@@ -576,6 +587,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.near.right.ADD}
                   value={String(prescription.prescription?.near?.right?.ADD)}
                 />
@@ -583,6 +595,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.near.left.SPH}
                   value={String(prescription.prescription?.near?.left?.SPH)}
                 />
@@ -590,6 +603,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.near.left.CYL}
                   value={String(prescription.prescription?.near?.left?.CYL)}
                 />
@@ -597,6 +611,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.near.left.AXIS}
                   value={String(prescription.prescription?.near?.left?.AXIS)}
                 />
@@ -604,6 +619,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300">
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={handleChange.near.left.ADD}
                   value={String(prescription.prescription?.near?.left?.ADD)}
                 />
@@ -620,6 +636,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               <td className="border border-gray-300 px-4 py-2" colSpan={1}>
                 <TextBox
                   textAlign="center"
+                  type="number"
                   setValue={(value: string) => handleChange.ipd(Number(value))}
                   value={String(prescription.prescription?.ipd)}
                 />

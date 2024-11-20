@@ -41,7 +41,7 @@ const TextBox = (props: Props) => {
       <input
         onFocus={handleFocus}
         ref={txtRef}
-        className={`w-full h-full p-2 ${alignText} appearance-none border border-zinc-200 outline-none ring-0 ${
+        className={`w-full h-full p-2 ${alignText} appearance-none border border-zinc-200 selection:bg-red-100 outline-none ring-0 ${
           props.className && props.className
         }`}
         onChange={handleChange}
