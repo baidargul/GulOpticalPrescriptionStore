@@ -1,8 +1,9 @@
+import { JWTUtils } from "@/lib/jwtUtils";
 import { connectMongo } from "@/lib/mongo";
-import { User } from "@/models/Users";
+import { User, USER_TYPE } from "@/models/Users";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, res: any) {
   const response = {
     status: 500,
     message: "Internal Server Error",
@@ -23,14 +24,17 @@ export async function GET(req: NextRequest) {
 
     await connectMongo();
 
-    const user = await User.findOne({ phone: String(phone) }).exec();
+    const user: USER_TYPE = await User.findOne({ phone: String(phone) }).exec();
 
     if (user) {
       if (user.password === password) {
+        const token = JWTUtils.generateToken(user.toJSON());
+
         response.status = 200;
         response.message = "User found";
         response.data = user;
-        return new Response(JSON.stringify(response));
+        const newResponse = JWTUtils.createResponseHeader(response, token);
+        return newResponse;
       } else {
         response.status = 400;
         response.message = "Wrong password";
