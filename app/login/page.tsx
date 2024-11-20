@@ -8,6 +8,7 @@ type Props = {};
 
 const page = (props: Props) => {
   const [mode, setMode] = useState<"login" | "register">("login");
+  const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("03");
   const [password, setPassword] = useState<string>("");
 
@@ -17,7 +18,7 @@ const page = (props: Props) => {
 
   return (
     <div className="w-full min-h-[100dvh] select-none overflow-hidden bg-gradient-to-t from-red-100 to-red-50 flex justify-center items-center">
-      <div className="bg-white rounded-lg border-b-4 border-red-200 min-w-[300px] sm:w-full max-w-[700px] grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-[1fr_auto] place-items-center gap-2 p-4 sm:p-10">
+      <div className="bg-white rounded-lg border-b-4 border-red-200 min-w-[320px] sm:w-full max-w-[700px] grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-[1fr_auto] place-items-center gap-2 p-4 sm:p-10">
         <div className="mb-0 sm:mb-0 flex flex-col gap-1 items-center">
           <Image
             src="/images/gul optical.png"
@@ -32,8 +33,17 @@ const page = (props: Props) => {
         </div>
         <div className="flex flex-col gap-4 w-full">
           <div className="text-lg font-semibold text-red-700 tracking-wide">
-            Login
+            {mode === "login" ? "Login" : "Register yourself"}
           </div>
+          {mode === "register" && (
+            <TextBox
+              placeholder="Firstname Lastname"
+              type="text"
+              label="Name"
+              value={name}
+              setValue={setName}
+            />
+          )}
           <TextBox
             placeholder="Phone Number"
             type="number"
