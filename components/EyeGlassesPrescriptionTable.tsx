@@ -371,7 +371,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
 
   return (
     <div className="w-full select-none flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md scale-75 sm:scale-100 relative">
+      <div className="bg-white p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
         <div
           title="Goto Home"
           className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border"
