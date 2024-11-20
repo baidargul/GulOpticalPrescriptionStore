@@ -6,6 +6,7 @@ import { USER_TYPE } from "@/models/Users";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type Props = {};
@@ -15,6 +16,7 @@ const page = (props: Props) => {
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("03");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
   const toggleMode = () => {
     setMode(mode === "login" ? "register" : "login");
@@ -41,9 +43,10 @@ const page = (props: Props) => {
       phone,
       password
     );
-    console.log(response);
+
     if (response.status === 200) {
       setMode("register");
+      router.push("/find");
     }
   };
 
