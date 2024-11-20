@@ -20,7 +20,7 @@ const page = async (props: Props) => {
   const phone = (await props.params).phone;
 
   return (
-    <div className="w-full max-h-[100dvh] min-h-[100dvh] bg-amber-400 flex justify-center items-center">
+    <div className="w-full max-h-[100dvh] min-h-[100dvh] bg-zinc-600 flex justify-center items-center">
       <div className="w-full">
         <EyeGlassesPrescriptionTable phone={phone} />
       </div>

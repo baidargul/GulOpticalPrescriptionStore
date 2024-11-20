@@ -370,7 +370,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
   if (!isMounted) return null;
 
   return (
-    <div className="w-full select-none flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="w-full select-none">
       <div className="bg-white p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
         <div
           title="Goto Home"
