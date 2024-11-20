@@ -68,7 +68,13 @@ export async function POST(req: NextRequest) {
 
     const usersAlreadyAvailable = await User.find({}).exec();
 
-    console.log(usersAlreadyAvailable.length);
+    const thisUser = await User.findOne({ phone: data.phone }).exec();
+    if (thisUser) {
+      response.status = 400;
+      response.message = "User already exists";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
 
     const user = await User.create({
       name: data.name,

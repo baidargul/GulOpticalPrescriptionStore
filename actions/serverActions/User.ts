@@ -26,6 +26,13 @@ async function activate(phone: string) {
   return response.data;
 }
 
+async function login(phone: string, password: string) {
+  const response = await axios.post(
+    `/api/users/login?phone=${phone}&password=${password}`
+  );
+  return response.data;
+}
+
 export const user = {
   list,
   listAll,
