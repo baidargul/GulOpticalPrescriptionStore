@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"; // Ensure this is imported
 import { JWTUtils } from "@/lib/jwtUtils";
-
+require("dotenv").config();
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY; // Set this in your environment variables
 
 export function middleware(request: any) {
