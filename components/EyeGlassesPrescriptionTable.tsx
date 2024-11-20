@@ -10,6 +10,8 @@ import {
 } from "@/models/Prescription";
 import Button from "./ui/Button";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 
 type Props = {
   phone: string;
@@ -369,7 +371,18 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
 
   return (
     <div className="w-full select-none flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md scale-75 sm:scale-100">
+      <div className="bg-white p-6 rounded-lg shadow-md scale-75 sm:scale-100 relative">
+        <div
+          title="Goto Home"
+          className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border"
+        >
+          <Link href={"/"}>
+            <ChevronLeft
+              size={20}
+              className="text-zinc-500 group-hover:text-white rotate-45"
+            />
+          </Link>
+        </div>
         <h2 className="text-lg font-bold mb-4 hidden sm:block">
           Eye Glasses Prescription
         </h2>
