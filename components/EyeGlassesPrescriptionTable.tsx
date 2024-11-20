@@ -370,8 +370,8 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
   if (!isMounted) return null;
 
   return (
-    <div className="w-full select-none">
-      <div className="bg-white p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
+    <div className="w-full select-none flex justify-center items-center">
+      <div className="bg-white max-w-[700px] p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
         <div
           title="Goto Home"
           className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border"
