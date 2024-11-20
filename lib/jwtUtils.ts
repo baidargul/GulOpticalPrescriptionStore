@@ -20,9 +20,11 @@ const generateToken = (payload: any) => {
   return token;
 };
 
-const isValidToken = (req: any) => {
-  const token = req.headers.get("Authorization");
+const isValidRequest = (req: any, tokenName: string) => {
   const secretKey = JWT_SECRET_KEY; // Replace with your own secret key
+  // const token = req.headers.get("Authorization");
+  const token = req.cookies.get(tokenName).value;
+  if (!token) return null;
 
   try {
     return jwt.verify(token, secretKey);
@@ -39,6 +41,6 @@ const createResponseHeader = (response: RESPONSE, token: string) => {
 
 export const JWTUtils = {
   generateToken,
-  isValidToken,
   createResponseHeader,
+  isValidRequest,
 };
