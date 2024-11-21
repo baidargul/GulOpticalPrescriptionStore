@@ -94,13 +94,15 @@ const page = (props: Props) => {
             <div className="p-2 mt-2`">
               <div className="">
                 {sales &&
-                  sales.map((sale, index) => (
+                  sales.map((sale: any, index: number) => (
                     <div key={index}>
-                      <PrescriptionRow
-                        data={sale}
-                        length={sales.length}
-                        index={index}
-                      />
+                      <a href={`/prescription/${sale.prescription._id}`}>
+                        <PrescriptionRow
+                          data={sale}
+                          length={sales.length}
+                          index={index}
+                        />
+                      </a>
                     </div>
                   ))}
               </div>
