@@ -21,10 +21,12 @@ const HomeLoginButton = (props: Props) => {
 
   if (session) {
     return (
-      <div className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
-        <CircleUser size={16} />
-        {session.name}
-      </div>
+      <Link href={`/profile/my/`}>
+        <div className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
+          <CircleUser size={16} />
+          {session.name}
+        </div>
+      </Link>
     );
   }
 

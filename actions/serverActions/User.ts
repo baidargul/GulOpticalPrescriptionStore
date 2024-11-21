@@ -34,10 +34,16 @@ async function login(phone: string, password: string) {
   return response.data;
 }
 
+async function logout(tokenName: string) {
+  //kill cookie with this token
+  document.cookie = `${tokenName}=; Max-Age=0; Path=/; SameSite=Lax; Secure`;
+}
+
 export const user = {
   list,
   listAll,
   login,
+  logout,
   create,
   activate,
   deactivate,
