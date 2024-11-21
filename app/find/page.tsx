@@ -1,5 +1,6 @@
 "use client";
 import { SERVER_RESPONSE, serverActions } from "@/actions/serverActions";
+import { JWTUtils } from "@/lib/jwtUtils";
 import { ChevronLeft, Plus, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,8 +11,18 @@ export default function Page() {
   const [isFinding, setIsFinding] = useState(false);
   const [phone, setPhone] = useState("03");
   const [rows, setRows] = useState<any>([]);
+  const [session, setSession] = useState(null);
   const phoneRef: any = useRef(null);
   const router = useRouter();
+
+  const validateFrontEndSession = async () => {
+    const chk = await serverActions.user.session.validateSession("token");
+    console.log(chk);
+  };
+
+  useEffect(() => {
+    validateFrontEndSession();
+  }, []);
 
   const handleFocus = () => {
     phoneRef.current.select();
@@ -117,7 +128,7 @@ export default function Page() {
                 />
               </div>
               <div className="flex justify-end gap-2 items-center mt-5">
-                {phone && phone.length === 11 && (
+                {session && phone && phone.length === 11 && (
                   <a href={`/prescription/add/${phone}`}>
                     <button className="p-2 px-6 flex gap-1 items-center sm:px-10 rounded-md bg-zinc-100 hover:bg-zinc-50 text-zinc-900 font-bold text-sm sm:text-lg tracking-wider border border-zinc-600">
                       <Plus size={20} />

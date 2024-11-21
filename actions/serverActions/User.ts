@@ -1,5 +1,6 @@
 import { USER_TYPE } from "@/models/Users";
 import axios from "axios";
+import { session } from "./Session";
 
 async function listAll() {
   const response = await axios.get("/api/users");
@@ -40,4 +41,5 @@ export const user = {
   create,
   activate,
   deactivate,
+  session,
 };
