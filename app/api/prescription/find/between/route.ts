@@ -1,4 +1,4 @@
-import { connectMongo } from "@/lib/mongo";
+import { connectMongo, formatByPrescription } from "@/lib/mongo";
 import { Prescription } from "@/models/Prescription";
 import { NextRequest } from "next/server";
 
@@ -31,11 +31,15 @@ export async function GET(req: NextRequest) {
       },
     }).exec();
 
-    console.log(prescriptions);
+    let data = [];
+    for (const item of prescriptions) {
+      const formatted = await formatByPrescription(String(item._id));
+      data.push(formatted);
+    }
 
     response.status = 200;
     response.message = `${prescriptions.length} prescriptions found`;
-    response.data = prescriptions;
+    response.data = data;
     return new Response(JSON.stringify(response));
   } catch (error: any) {
     console.log("[SERVER ERROR]: " + error.message);

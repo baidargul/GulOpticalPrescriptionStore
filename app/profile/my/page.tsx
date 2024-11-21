@@ -91,12 +91,16 @@ const page = (props: Props) => {
             </div>
           </div>
           {sales && (
-            <div className="p-2 border">
+            <div className="p-2 mt-2`">
               <div className="">
                 {sales &&
-                  sales.map((sale) => (
-                    <div key={sale.name}>
-                      <PrescriptionRow prescription={sale} />
+                  sales.map((sale, index) => (
+                    <div key={index}>
+                      <PrescriptionRow
+                        data={sale}
+                        length={sales.length}
+                        index={index}
+                      />
                     </div>
                   ))}
               </div>
