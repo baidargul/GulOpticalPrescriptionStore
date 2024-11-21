@@ -134,7 +134,7 @@ export default function Page() {
                   <Search
                     size={20}
                     className={`${
-                      isFinding ? "animate-spin scale-75" : "scale-100"
+                      isFinding ? "animate-pulse scale-75" : "scale-100"
                     } transition-all duration-500`}
                   />
                   {isFinding ? "..." : "Find"}
