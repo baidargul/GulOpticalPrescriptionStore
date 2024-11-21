@@ -16,8 +16,13 @@ export default function Page() {
     phoneRef.current.select();
   };
 
-  const handleNumberChange = (e: any) => {
-    setPhone(e.target.value.replace(/[^0-9]/g, ""));
+  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+
+    // Allow only numbers and limit length to 11
+    if (/^[0-9]*$/.test(input) && input.length <= 11) {
+      setPhone(input);
+    }
   };
 
   const handleKeyDown = (e: any) => {
@@ -100,7 +105,7 @@ export default function Page() {
                   onChange={handleNumberChange}
                   onKeyDown={handleKeyDown}
                   onFocus={handleFocus}
-                  type="text"
+                  type="number"
                   minLength={11}
                   min={11}
                   max={11}
