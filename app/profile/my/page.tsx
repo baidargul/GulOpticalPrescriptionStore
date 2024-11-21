@@ -46,9 +46,9 @@ const page = (props: Props) => {
   };
 
   return (
-    <div className="w-full select-none min-h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center text-zinc-900">
-      <div className="border rounded p-2">
-        <div className="flex justify-between items-center bg-white p-2 border-b rounded-t w-[700px]">
+    <div className="w-full select-none min-h-[100dvh] max-h-[100dvh] overflow-hidden flex flex-col justify-center items-center text-zinc-900 px-4">
+      <div className="border rounded p-2 w-full min-w-[320px] sm:w-[700px]">
+        <div className="flex justify-between items-center bg-white p-2 border-b">
           <div className="flex gap-1 items-center">
             <UserCircle size={30} className="opacity-80" />
             <div>{session.name}</div>
