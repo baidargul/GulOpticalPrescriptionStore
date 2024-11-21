@@ -1,5 +1,5 @@
-import { connectMongo } from "@/lib/mongo";
-import { CircleUser, Notebook, PersonStanding } from "lucide-react";
+import HomeLoginButton from "@/components/site/HomeLoginButton";
+import { CircleUser, Notebook } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,12 +32,7 @@ export default async function Home() {
               Prescriptions
             </div>
           </Link>
-          <Link href={"/login"}>
-            <div className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
-              <CircleUser size={16} />
-              Employee Login
-            </div>
-          </Link>
+          <HomeLoginButton />
         </div>
       </div>
     </main>
