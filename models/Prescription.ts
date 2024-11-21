@@ -1,44 +1,50 @@
 import mongoose from "mongoose";
 
-const prescriptionSchema = new mongoose.Schema({
-  name: { type: String, required: true }, // Prescription name (e.g., "John's Glasses")
-  date: { type: Date, required: true, default: Date.now }, // Prescription date
-  isDefault: { type: Boolean, default: false }, // Indicates if this is the default prescription
-  prescription: {
-    near: {
-      right: {
-        SPH: { type: Number, default: 0 },
-        CYL: { type: Number, default: 0 },
-        AXIS: { type: Number, default: 0 },
-        ADD: { type: Number, default: 0 },
+const prescriptionSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true }, // Prescription name (e.g., "John's Glasses")
+    date: { type: Date, required: true, default: Date.now }, // Prescription date
+    isDefault: { type: Boolean, default: false }, // Indicates if this is the default prescription
+    prescription: {
+      near: {
+        right: {
+          SPH: { type: Number, default: 0 },
+          CYL: { type: Number, default: 0 },
+          AXIS: { type: Number, default: 0 },
+          ADD: { type: Number, default: 0 },
+        },
+        left: {
+          SPH: { type: Number, default: 0 },
+          CYL: { type: Number, default: 0 },
+          AXIS: { type: Number, default: 0 },
+          ADD: { type: Number, default: 0 },
+        },
       },
-      left: {
-        SPH: { type: Number, default: 0 },
-        CYL: { type: Number, default: 0 },
-        AXIS: { type: Number, default: 0 },
-        ADD: { type: Number, default: 0 },
+      distance: {
+        right: {
+          SPH: { type: Number, default: 0 },
+          CYL: { type: Number, default: 0 },
+          AXIS: { type: Number, default: 0 },
+          ADD: { type: Number, default: 0 },
+        },
+        left: {
+          SPH: { type: Number, default: 0 },
+          CYL: { type: Number, default: 0 },
+          AXIS: { type: Number, default: 0 },
+          ADD: { type: Number, default: 0 },
+        },
       },
+      ipd: { type: Number, default: 0 }, // Interpupillary distance
+      note: { type: String, default: "" }, // Additional notes
+      lens: { type: String },
     },
-    distance: {
-      right: {
-        SPH: { type: Number, default: 0 },
-        CYL: { type: Number, default: 0 },
-        AXIS: { type: Number, default: 0 },
-        ADD: { type: Number, default: 0 },
-      },
-      left: {
-        SPH: { type: Number, default: 0 },
-        CYL: { type: Number, default: 0 },
-        AXIS: { type: Number, default: 0 },
-        ADD: { type: Number, default: 0 },
-      },
-    },
-    ipd: { type: Number, default: 0 }, // Interpupillary distance
-    note: { type: String, default: "" }, // Additional notes
-    lens: { type: String },
+
+    customer: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" }, // Reference to the customer,
   },
-  customer: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" }, // Reference to the customer
-});
+  {
+    timestamps: true, // Adds createdAt and updatedAt fields
+  }
+);
 
 export const Prescription =
   mongoose.models.Prescription ||

@@ -1,6 +1,9 @@
 "use client";
-import { serverActions } from "@/actions/serverActions";
+import { SERVER_RESPONSE, serverActions } from "@/actions/serverActions";
+import { prescription } from "@/actions/serverActions/Prescription";
+import PrescriptionRow from "@/components/site/PrescriptionRow";
 import Button from "@/components/ui/Button";
+import { PRESCRIPTION_TYPE } from "@/models/Prescription";
 import { UserCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -10,6 +13,7 @@ type Props = {};
 const page = (props: Props) => {
   const [session, setSession] = useState<any>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [sales, setSales] = useState<PRESCRIPTION_TYPE[] | null>(null);
   const router = useRouter();
   const validateFrontEndSession = async () => {
     const isValid = await serverActions.user.session.validateSession("token");
@@ -21,7 +25,23 @@ const page = (props: Props) => {
 
   useEffect(() => {
     validateFrontEndSession();
+    fetchSales();
   }, []);
+
+  const fetchSales = async () => {
+    let dateBefore = new Date();
+    dateBefore.setDate(dateBefore.getDate() - 1);
+    const res: SERVER_RESPONSE = await serverActions.prescription.fromRange(
+      new Date(dateBefore),
+      new Date()
+    );
+
+    if (res.status === 200) {
+      setSales(res.data);
+    } else {
+      setSales(null);
+    }
+  };
 
   if (!session && isMounted === false) {
     return (
@@ -48,7 +68,7 @@ const page = (props: Props) => {
   return (
     <div className="w-full select-none min-h-[100dvh] max-h-[100dvh] overflow-hidden flex flex-col justify-center items-center text-zinc-900 px-4">
       <div className="border rounded p-2 w-full min-w-[320px] sm:w-[700px]">
-        <div className="flex justify-between items-center bg-white p-2 border-b">
+        <div className="flex justify-between items-center bg-white p-2">
           <div className="flex gap-1 items-center">
             <UserCircle size={30} className="opacity-80" />
             <div>{session.name}</div>
@@ -57,7 +77,18 @@ const page = (props: Props) => {
             <Button onClick={handleLogout}>Logout</Button>
           </div>
         </div>
-        <div></div>
+        {sales && (
+          <div className="p-2 border">
+            <div className="">
+              {sales &&
+                sales.map((sale) => (
+                  <div key={sale.name}>
+                    <PrescriptionRow prescription={sale} />
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
