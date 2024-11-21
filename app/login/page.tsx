@@ -29,6 +29,8 @@ const page = (props: Props) => {
       password,
       active: true,
       isAdmin: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     const response: SERVER_RESPONSE = await serverActions.user.create(user);

@@ -4,7 +4,8 @@ import { prescription } from "@/actions/serverActions/Prescription";
 import PrescriptionRow from "@/components/site/PrescriptionRow";
 import Button from "@/components/ui/Button";
 import { PRESCRIPTION_TYPE } from "@/models/Prescription";
-import { UserCircle } from "lucide-react";
+import { ChevronLeft, UserCircle } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -67,28 +68,41 @@ const page = (props: Props) => {
 
   return (
     <div className="w-full select-none min-h-[100dvh] max-h-[100dvh] overflow-hidden flex flex-col justify-center items-center text-zinc-900 px-4">
-      <div className="border rounded p-2 w-full min-w-[320px] sm:w-[700px]">
-        <div className="flex justify-between items-center bg-white p-2">
-          <div className="flex gap-1 items-center">
-            <UserCircle size={30} className="opacity-80" />
-            <div>{session.name}</div>
-          </div>
-          <div className=" cursor-pointer">
-            <Button onClick={handleLogout}>Logout</Button>
-          </div>
+      <div className="relative">
+        <div
+          title="Goto Home"
+          className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border"
+        >
+          <Link href={"/"}>
+            <ChevronLeft
+              size={20}
+              className="text-zinc-500 group-hover:text-white hover:rotate-0 rotate-45 transition-all duration-500"
+            />
+          </Link>
         </div>
-        {sales && (
-          <div className="p-2 border">
-            <div className="">
-              {sales &&
-                sales.map((sale) => (
-                  <div key={sale.name}>
-                    <PrescriptionRow prescription={sale} />
-                  </div>
-                ))}
+        <div className="border rounded p-2 w-full min-w-[320px] sm:w-[700px]">
+          <div className="flex justify-between items-center bg-white p-2">
+            <div className="flex gap-1 items-center">
+              <UserCircle size={30} className="opacity-80" />
+              <div>{session.name}</div>
+            </div>
+            <div className=" cursor-pointer">
+              <Button onClick={handleLogout}>Logout</Button>
             </div>
           </div>
-        )}
+          {sales && (
+            <div className="p-2 border">
+              <div className="">
+                {sales &&
+                  sales.map((sale) => (
+                    <div key={sale.name}>
+                      <PrescriptionRow prescription={sale} />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
