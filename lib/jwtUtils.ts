@@ -36,8 +36,13 @@ const isValidToken = async (token: string) => {
 
 const isValidRequest = (req: any, tokenName: string) => {
   const secretKey = JWT_SECRET_KEY;
-  const token = req.cookies.get(tokenName).value;
-  if (!token) return null;
+  const token = req.cookies.get(tokenName)?.value;
+  if (!token) {
+    console.log(
+      `No token found with name '${tokenName}' in request for validation.`
+    );
+    return null;
+  }
 
   try {
     return jwt.verify(token, secretKey);

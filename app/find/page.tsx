@@ -16,7 +16,7 @@ export default function Page() {
   const router = useRouter();
 
   const validateFrontEndSession = async () => {
-    const chk = await serverActions.user.session.validateSession("token");
+    const chk = await serverActions.user.session.validateSession("token1");
     console.log(chk);
   };
 

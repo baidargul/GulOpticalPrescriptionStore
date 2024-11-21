@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify(response));
     }
 
-    const validateToken = JWTUtils.isValidRequest(req, "token");
+    const validateToken = JWTUtils.isValidRequest(req, data.tokenName);
     if (!validateToken) {
       response.status = 400;
       response.message = "Invalid session";
