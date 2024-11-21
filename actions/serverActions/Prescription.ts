@@ -12,7 +12,13 @@ async function fromRange(from: Date, to: Date) {
   return response.data;
 }
 
+async function list(id: string) {
+  const response = await axios.get(`/api/prescription/find?_id=${id}`);
+  return response.data;
+}
+
 export const prescription = {
+  list,
   listAll,
   fromRange,
 };
