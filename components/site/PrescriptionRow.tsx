@@ -17,7 +17,7 @@ const PrescriptionRow = (props: Props) => {
           <div className="opacity-40">
             {Number(Number(props.length) - Number(props.index))}-
           </div>
-          <div className="font-semibold flex flex-col sm:flex-row items-center gap-0 sm:gap-2">
+          <div className="font-semibold flex flex-col sm:flex-row items-start gap-0 sm:gap-2">
             <div className="">{props.data.prescription.name}</div>
             <div className="font-normal text-xs sm:text-sm tracking-widest">
               {props.data.customer.phone}
