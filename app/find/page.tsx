@@ -1,7 +1,7 @@
 "use client";
 import { SERVER_RESPONSE, serverActions } from "@/actions/serverActions";
 import { JWTUtils } from "@/lib/jwtUtils";
-import { ChevronLeft, Plus, Search } from "lucide-react";
+import { ChevronLeft, Plus, Search, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,13 +11,15 @@ export default function Page() {
   const [isFinding, setIsFinding] = useState(false);
   const [phone, setPhone] = useState("03");
   const [rows, setRows] = useState<any>([]);
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState<any>(null);
   const phoneRef: any = useRef(null);
   const router = useRouter();
 
   const validateFrontEndSession = async () => {
-    const chk = await serverActions.user.session.validateSession("token1");
-    console.log(chk);
+    const isValid = await serverActions.user.session.validateSession("token");
+    if (isValid) {
+      setSession(isValid);
+    }
   };
 
   useEffect(() => {
@@ -80,6 +82,11 @@ export default function Page() {
 }`}
       </style>
       <div className="relative">
+        {session && (
+          <div className="bottom-1 left-1 absolute z-10 opacity-40 text-xs uppercase flex gap-1 items-center select-none">
+            <User size={14} /> {session.name}
+          </div>
+        )}
         <div
           title="Goto Home"
           className="absolute -top-4 -left-4 cursor-pointer z-10 p-2 bg-white hover:bg-red-500 group rounded-full border"
