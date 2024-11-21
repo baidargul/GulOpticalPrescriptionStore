@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function Page() {
+  const [isFinding, setIsFinding] = useState(false);
   const [phone, setPhone] = useState("03");
   const [rows, setRows] = useState<any>([]);
   const phoneRef: any = useRef(null);
@@ -32,6 +33,7 @@ export default function Page() {
   };
 
   const handleSubmit = async () => {
+    setIsFinding(true);
     const res: SERVER_RESPONSE = await serverActions.customer.list(phone);
     console.log(res);
     if (res.status === 200) {
@@ -39,6 +41,7 @@ export default function Page() {
     } else {
       setRows([]);
     }
+    setIsFinding(false);
   };
 
   return (
@@ -124,10 +127,17 @@ export default function Page() {
                 )}
                 <button
                   onClick={handleSubmit}
-                  className="p-2 px-6 sm:px-10  flex gap-1 items-center rounded-md bg-zinc-100 hover:bg-zinc-50 text-zinc-900 font-bold text-sm sm:text-lg tracking-wider border border-zinc-600"
+                  className={`p-2 px-6 sm:px-10 ${
+                    isFinding && "animate-pulse"
+                  }  flex gap-1 items-center rounded-md bg-zinc-100 hover:bg-zinc-50 text-zinc-900 font-bold text-sm sm:text-lg tracking-wider border border-zinc-600`}
                 >
-                  <Search size={20} />
-                  Find
+                  <Search
+                    size={20}
+                    className={`${
+                      isFinding ? "animate-spin scale-75" : "scale-100"
+                    } transition-all duration-500`}
+                  />
+                  {isFinding ? "..." : "Find"}
                 </button>
               </div>
             </div>
