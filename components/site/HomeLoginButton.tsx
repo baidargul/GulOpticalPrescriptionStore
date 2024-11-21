@@ -34,8 +34,7 @@ const HomeLoginButton = (props: Props) => {
 
   if (!isMounted) {
     return (
-      <div className="p-2 px-4 animate-pulse flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
-        <CircleUser size={16} />
+      <div className="p-2 px-4 animate-pulse flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter ">
         ...
       </div>
     );
