@@ -1,6 +1,8 @@
+import { JWTUtils } from "@/lib/jwtUtils";
 import { connectMongo } from "@/lib/mongo";
 import { Customer } from "@/models/Customer";
 import { Prescription } from "@/models/Prescription";
+import { User } from "@/models/Users";
 import { NextRequest } from "next/server";
 export const revalidate = 60; // Regenerate static pages every 60 seconds
 
@@ -14,7 +16,40 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    const db = await connectMongo();
+    if (!data) {
+      response.status = 400;
+      response.message = "Invalid data";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
+
+    const isValid = await JWTUtils.isValidRequest(req, "token");
+
+    if (!isValid) {
+      response.status = 400;
+      response.message = "Invalid session";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
+
+    const user = await User.findById(isValid._id);
+
+    if (!user) {
+      response.status = 400;
+      response.message = "Invalid session, user not found";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
+
+    if (user.active === false) {
+      response.status = 400;
+      response.message =
+        "Your account is not approved yet to create prescriptions.";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
+
+    await connectMongo();
 
     let customer = await Customer.findOne({ phone: data.phone }).exec();
 
@@ -77,7 +112,7 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo();
-    const prescriptions = await Prescription.find({}).exec();
+    const prescriptions = await Prescription.find({}).sort({ date: -1 }).exec();
     response.status = 200;
     response.message = `${prescriptions.length} prescriptions found`;
     response.data = prescriptions;

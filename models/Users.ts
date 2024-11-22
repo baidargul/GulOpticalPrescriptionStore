@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     active: { type: Boolean },
     isAdmin: { type: Boolean, default: true },
+    prescriptions: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Prescription" },
+    ], // Array of prescriptions
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields

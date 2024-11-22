@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const prescriptionSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true }, // Prescription name (e.g., "John's Glasses")
+    name: { type: String, required: true }, // Prescription name
     date: { type: Date, required: true, default: Date.now }, // Prescription date
     isDefault: { type: Boolean, default: false }, // Indicates if this is the default prescription
     prescription: {
@@ -34,12 +34,11 @@ const prescriptionSchema = new mongoose.Schema(
           ADD: { type: Number, default: 0 },
         },
       },
-      ipd: { type: Number, default: 0 }, // Interpupillary distance
-      note: { type: String, default: "" }, // Additional notes
+      ipd: { type: Number, default: 0 },
+      note: { type: String, default: "" },
       lens: { type: String },
     },
-
-    customer: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" }, // Reference to the customer,
+    customer: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to the user
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields
