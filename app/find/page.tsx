@@ -186,7 +186,7 @@ export default function Page() {
                   Phone
                 </th>
                 <th className="font-semibold text-right bg-zinc-600 text-white py-2 pr-2 ">
-                  Last active
+                  Created
                 </th>
               </tr>
             </thead>
@@ -195,52 +195,69 @@ export default function Page() {
                 return (
                   <tr
                     key={index}
-                    onClick={(e: any) => {
-                      router.push(`/prescription/${row._id}`);
-                    }}
                     className={` w-full even:bg-zinc-200/40 cursor-pointer ${
                       index === 0 ? "border-y" : "border-b"
                     } border-zinc-600`}
                   >
                     <td className="py-2 pl-1 text-sm">
-                      <div>
-                        <div className="hidden sm:block">
-                          {rows.prescriptions.length - index} -
+                      <a
+                        href={`/prescription/${row._id}`}
+                        className="w-full appearance-none"
+                      >
+                        <div>
+                          <div className="hidden sm:block">
+                            {rows.prescriptions.length - index} -
+                          </div>
+                          <div className="sm:hidden text-xs">
+                            {rows.prescriptions.length - index}
+                          </div>
                         </div>
-                        <div className="sm:hidden text-xs">
-                          {rows.prescriptions.length - index}
-                        </div>
-                      </div>
+                      </a>
                     </td>
                     <td className="py-2 pl-1 text-sm">
-                      <div>
-                        <div className="hidden sm:block">{row.name}</div>
-                        <div className="sm:hidden text-xs">{row.name}</div>
-                      </div>
+                      <a
+                        href={`/prescription/${row._id}`}
+                        className="w-full appearance-none"
+                      >
+                        <div>
+                          <div className="hidden sm:block">{row.name}</div>
+                          <div className="sm:hidden text-xs">{row.name}</div>
+                        </div>
+                      </a>
                     </td>
                     <td className="py-2 pl-1 text-sm hidden sm:block">
-                      <div>
-                        <div className="hidden sm:block">
-                          {rows.customer.phone}
+                      <a
+                        href={`/prescription/${row._id}`}
+                        className="w-full appearance-none"
+                      >
+                        <div>
+                          <div className="hidden sm:block">
+                            {rows.customer.phone}
+                          </div>
+                          <div className="sm:hidden text-xs">
+                            {rows.customer.phone}
+                          </div>
                         </div>
-                        <div className="sm:hidden text-xs">
-                          {rows.customer.phone}
-                        </div>
-                      </div>
+                      </a>
                     </td>
                     <td className="py-2 pr-2 text-sm text-right">
-                      <div>
-                        <div className="hidden sm:block">
-                          {" "}
-                          {new Date(row.date).toDateString()} -{" "}
-                          {new Date(row.date).toLocaleTimeString()}
+                      <a
+                        href={`/prescription/${row._id}`}
+                        className="w-full appearance-none"
+                      >
+                        <div>
+                          <div className="hidden sm:block">
+                            {" "}
+                            {new Date(row.date).toDateString()} -{" "}
+                            {new Date(row.date).toLocaleTimeString()}
+                          </div>
+                          <div className="sm:hidden text-xs">
+                            {" "}
+                            {new Date(row.date).toDateString()} -{" "}
+                            {new Date(row.date).toLocaleTimeString()}
+                          </div>
                         </div>
-                        <div className="sm:hidden text-xs">
-                          {" "}
-                          {new Date(row.date).toDateString()} -{" "}
-                          {new Date(row.date).toLocaleTimeString()}
-                        </div>
-                      </div>
+                      </a>
                     </td>
                   </tr>
                 );
