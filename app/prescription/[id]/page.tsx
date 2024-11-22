@@ -629,6 +629,13 @@ const page = async (props: Props) => {
             Booked by: {data.user.name}
           </div>
         </div>
+        <div className="flex justify-end items-center w-full mt-4 text-right absolute -bottom-8 right-0">
+          <a href="/privacy">
+            <div className="w-fit sm:w-fit uppercase text-sm tracking-wide py-1 text-red-600 border-b border-red-600 cursor-pointer">
+              Privacy Policy
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   );
