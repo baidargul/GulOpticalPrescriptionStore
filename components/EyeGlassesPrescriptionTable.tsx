@@ -12,12 +12,14 @@ import Button from "./ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   phone: string;
 };
 
 const EyeGlassesPrescriptionTable = (props: Props) => {
+  const [isSaving, setIsSaving] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [phone, setPhone] = useState(props.phone);
   const [prescription, setPrescription] = useState<PRESCRIPTION_TYPE | any>({
@@ -58,6 +60,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
       lens: `CR WT`,
     },
   });
+  const router = useRouter();
 
   useEffect(() => {
     const find = async () => {
@@ -81,12 +84,16 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
     setIsMounted(true);
   }, []);
   const handleCreateCard = async () => {
+    setIsSaving(true);
     const temp = await serverActions.customer.addPrescription(
       props.phone,
       prescription
     );
 
-    console.log(temp);
+    if (temp.status === 200) {
+      router.push(`/find`);
+    }
+    setIsSaving(false);
   };
 
   const handleChange = {
@@ -370,7 +377,11 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
   if (!isMounted) return null;
 
   return (
-    <div className="w-full select-none flex justify-center items-center">
+    <div
+      className={`w-full select-none flex justify-center items-center ${
+        isSaving ? "animate-pulse opacity-50" : "opacity-100"
+      }`}
+    >
       <div className="bg-white max-w-[700px] p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
         <div
           title="Goto Home"
