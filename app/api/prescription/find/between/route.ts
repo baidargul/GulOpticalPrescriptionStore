@@ -29,7 +29,9 @@ export async function GET(req: NextRequest) {
         $gte: new Date(fromDate).toISOString(),
         $lte: new Date(toDate).toISOString(),
       },
-    }).exec();
+    })
+      .sort({ date: -1 })
+      .exec();
 
     let data = [];
     for (const item of prescriptions) {
