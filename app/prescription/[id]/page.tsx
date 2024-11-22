@@ -36,6 +36,7 @@ const page = async (props: Props) => {
   };
 
   data = await find();
+  console.log(`data`);
   console.log(data);
 
   return (
