@@ -1,4 +1,5 @@
-import { connectMongo } from "@/lib/mongo";
+import { JWTUtils } from "@/lib/jwtUtils";
+import { connectMongo, protectPhoneNumber } from "@/lib/mongo";
 import { Customer } from "@/models/Customer";
 import { Prescription } from "@/models/Prescription";
 import { NextRequest } from "next/server";
@@ -35,8 +36,19 @@ export async function GET(req: NextRequest) {
       .sort({ date: -1 })
       .exec();
 
+    const user = await JWTUtils.isValidRequest(req, "token");
+
+    let pres: any[] = [];
+    if (user) {
+      if (user.isAdmin) {
+        pres = customer;
+      } else {
+        pres = protectPhoneNumber(customer);
+      }
+    }
+
     const final = {
-      customer: customer[0],
+      customer: pres[0],
       prescriptions: prescripions,
     };
 

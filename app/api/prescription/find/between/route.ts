@@ -1,3 +1,4 @@
+import { JWTUtils } from "@/lib/jwtUtils";
 import { connectMongo, formatByPrescription } from "@/lib/mongo";
 import { Prescription } from "@/models/Prescription";
 import { NextRequest } from "next/server";
@@ -21,8 +22,6 @@ export async function GET(req: NextRequest) {
       return new Response(JSON.stringify(response));
     }
 
-    console.log(fromDate, toDate);
-
     await connectMongo();
     const prescriptions = await Prescription.find({
       date: {
@@ -35,9 +34,20 @@ export async function GET(req: NextRequest) {
 
     let data = [];
     for (const item of prescriptions) {
-      const formatted = await formatByPrescription(String(item._id));
+      const employee = await JWTUtils.isValidRequest(req, "token");
+      let formatted;
+      if (!employee) {
+        formatted = await formatByPrescription(String(item._id));
+      } else {
+        formatted = await formatByPrescription(
+          String(item._id),
+          employee.isAdmin === true
+        );
+      }
       data.push(formatted);
     }
+
+    console.log(data);
 
     response.status = 200;
     response.message = `${prescriptions.length} prescriptions found`;

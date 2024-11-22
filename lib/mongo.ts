@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { Prescription, PRESCRIPTION_TYPE } from "@/models/Prescription";
 import { Customer } from "@/models/Customer";
 import { User } from "@/models/Users";
+import { JWTUtils } from "./jwtUtils";
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -23,7 +24,29 @@ export const connectMongo = async () => {
   }
 };
 
-export async function formatByPrescription(prescriptionId: string) {
+export function protectPhoneNumber(arr: any[]) {
+  let target = [];
+  if (!Array.isArray(arr)) {
+    target.push(arr);
+  } else {
+    target = arr;
+  }
+
+  // Mask phone numbers
+  const protectedCustomers = target.map((customer) => ({
+    ...customer,
+    phone: `${String(customer.phone).slice(0, 3)}****${String(
+      customer.phone
+    ).slice(8, 11)}`, // Replace phone with masked value
+  }));
+
+  return protectedCustomers;
+}
+
+export async function formatByPrescription(
+  prescriptionId: string,
+  isAdmin?: boolean
+) {
   await connectMongo();
   const prescription: PRESCRIPTION_TYPE = await Prescription.findById(
     prescriptionId
@@ -46,9 +69,20 @@ export async function formatByPrescription(prescriptionId: string) {
     return null;
   }
 
+  let pres: any = customer;
+  if (isAdmin) {
+    pres = customer;
+  } else {
+    pres = protectPhoneNumber(customer);
+  }
+
+  if (Array.isArray(pres)) {
+    pres = pres[0];
+  }
+
   let final = {
     prescription,
-    customer: customer,
+    customer: pres,
     user: user,
   };
 
