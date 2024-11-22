@@ -35,6 +35,25 @@ export default async function Home() {
           <HomeLoginButton />
         </div>
       </div>
+      <div className="flex flex-col justify-start items-center px-32">
+        <div className="text-xs scale-75 text-nowrap w-fit">
+          This is just a tool we created, and will not act as website.
+        </div>
+        <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
+          Although we may introduct ecommerce solution in the future.
+        </div>
+        <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
+          <a
+            href="https://wa.me/923438793471"
+            className="flex gap-1 items-center"
+          >
+            <span className="font-bold">Any queries:</span>{" "}
+            <span className="py-1 border-b border-green-100">
+              📞+92 343 8793471
+            </span>
+          </a>
+        </div>
+      </div>
     </main>
   );
 }
