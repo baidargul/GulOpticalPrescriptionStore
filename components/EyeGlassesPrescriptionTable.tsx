@@ -19,6 +19,7 @@ type Props = {
 };
 
 const EyeGlassesPrescriptionTable = (props: Props) => {
+  const [session, setSession] = useState<any>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [phone, setPhone] = useState(props.phone);
@@ -63,6 +64,15 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
   const router = useRouter();
 
   useEffect(() => {
+    const validateUser = async () => {
+      const res = await serverActions.user.session.validateSession("token");
+      if (res) {
+        setSession(res);
+      }
+    };
+
+    validateUser();
+
     const find = async () => {
       if (props.phone) {
         const res: SERVER_RESPONSE = await serverActions.customer.list(
@@ -925,7 +935,12 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
 
         <div className="flex justify-end items-center w-full mt-4">
           <div className="w-full sm:w-fit">
-            <Button onClick={handleCreateCard}>Create</Button>
+            <Button
+              disabled={session ? false : true}
+              onClick={handleCreateCard}
+            >
+              Create
+            </Button>
           </div>
         </div>
       </div>
