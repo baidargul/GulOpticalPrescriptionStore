@@ -42,6 +42,11 @@ export default async function Home() {
         <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
           Although we may introduce the ecommerce solution in the future.
         </div>
+        <a href="/privacy">
+          <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
+            🧾 Privacy Policy
+          </div>
+        </a>
         <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
           <a
             href="https://wa.me/923438793471"
