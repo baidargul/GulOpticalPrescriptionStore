@@ -31,6 +31,7 @@ const page = (props: Props) => {
       isAdmin: false,
       createdAt: new Date(),
       updatedAt: new Date(),
+      prescriptions: [],
     };
 
     const response: SERVER_RESPONSE = await serverActions.user.create(user);
