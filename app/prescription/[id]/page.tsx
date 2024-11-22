@@ -617,7 +617,7 @@ const page = async (props: Props) => {
 
         <div className="flex justify-end items-center w-full mt-4 text-right absolute bottom-2 right-2">
           <div className="w-full sm:w-fit uppercase text-sm tracking-wide opacity-50">
-            Booked by: {data.prescription.user.name}
+            Booked by: {data.prescription?.user?.name}
           </div>
         </div>
       </div>
