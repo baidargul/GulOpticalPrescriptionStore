@@ -204,8 +204,12 @@ export default function Page() {
                   >
                     <td className="py-2 pl-1 text-sm">
                       <div>
-                        <div className="hidden sm:block">{index + 1} -</div>
-                        <div className="sm:hidden text-xs">{index + 1}</div>
+                        <div className="hidden sm:block">
+                          {rows.prescriptions.length - index} -
+                        </div>
+                        <div className="sm:hidden text-xs">
+                          {rows.prescriptions.length - index}
+                        </div>
                       </div>
                     </td>
                     <td className="py-2 pl-1 text-sm">
