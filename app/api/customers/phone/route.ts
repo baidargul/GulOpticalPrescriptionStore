@@ -18,7 +18,9 @@ export async function GET(req: NextRequest) {
     const phone = searchParams.get("phone");
 
     await connectMongo();
-    const customer = await Customer.find({ phone: phone }).exec();
+    const customer = await Customer.find({ phone: phone })
+      .sort({ date: -1 })
+      .exec();
 
     if (!customer || customer.length === 0) {
       response.status = 404;
@@ -29,7 +31,9 @@ export async function GET(req: NextRequest) {
 
     const prescripions = await Prescription.find({
       customer: customer[0]._id,
-    });
+    })
+      .sort({ date: -1 })
+      .exec();
 
     const final = {
       customer: customer[0],

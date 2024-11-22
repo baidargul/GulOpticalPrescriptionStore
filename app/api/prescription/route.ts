@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
     const prescriptions = await Prescription.find({
       customer: customer._id,
     })
-      .sort({ date: 1 })
+      .sort({ date: -1 })
       .exec();
 
     const prescription = await Prescription.create({
