@@ -24,8 +24,16 @@ const HomeLoginButton = (props: Props) => {
   if (session) {
     return (
       <Link href={`/profile/my/`}>
-        <div className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800">
-          <CircleUser size={16} />
+        <div
+          title={
+            session.active === false
+              ? "Your account is not active"
+              : session.name
+          }
+          className="p-2 px-4 flex gap-1 items-center text-nowrap sm:px-10 hover:bg-white cursor-pointer transition-all duration-300 rounded-md tracking-tighter hover:text-red-800"
+        >
+          {session.active === true && <CircleUser size={16} />}
+          {session.active === false && "⚠️"}
           {session.name}
         </div>
       </Link>
