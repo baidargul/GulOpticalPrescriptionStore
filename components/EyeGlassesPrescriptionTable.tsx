@@ -438,7 +438,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               width={200}
               height={200}
               alt="gul-opticals"
-              className="w-12 h-12 object-contain ml-auto sm:hidden"
+              className="w-12 h-12 object-contain ml-auto sm:hidden select-none pointer-events-none"
             />
             {prescription
               ? prescription && new Date(prescription.date).toDateString()
@@ -455,7 +455,7 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
                   width={200}
                   height={200}
                   alt="gul-opticals"
-                  className="w-12 h-12 object-contain"
+                  className="w-12 h-12 object-contain select-none pointer-events-none"
                 />
               </th>
               <th className="border-none border-gray-300 px-4 py-2" colSpan={4}>

@@ -93,7 +93,7 @@ const page = async (props: Props) => {
               width={200}
               height={200}
               alt="gul-opticals"
-              className="w-12 h-12 object-contain ml-auto sm:hidden"
+              className="w-12 h-12 object-contain ml-auto sm:hidden select-none pointer-events-none"
             />
             {new Date(data.prescription.date).toDateString()}
           </div>
@@ -108,7 +108,7 @@ const page = async (props: Props) => {
                   width={200}
                   height={200}
                   alt="gul-opticals"
-                  className="w-12 h-12 object-contain"
+                  className="w-12 h-12 object-contain select-none pointer-events-none"
                 />
               </th>
               <th
