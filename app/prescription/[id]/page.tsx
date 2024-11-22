@@ -39,6 +39,16 @@ const page = async (props: Props) => {
   console.log(`data`);
   console.log(data);
 
+  if (!data) {
+    return (
+      <div className="w-full min-h-[100dvh] max-w-[100dvw] select-none flex justify-center items-center">
+        <a href="/" className="appearance-none text-red-600 p-2 underline">
+          This prescription does not exist.
+        </a>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full min-h-[100dvh] max-w-[100dvw] select-none flex justify-center items-center">
       <div className="bg-white max-w-[700px] p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
