@@ -38,7 +38,8 @@ const prescriptionSchema = new mongoose.Schema(
       note: { type: String, default: "" },
       lens: { type: String },
     },
-    customer: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to the user
+    customer: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" }, // Reference to the customer
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to the user
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields

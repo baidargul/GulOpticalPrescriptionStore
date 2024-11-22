@@ -26,7 +26,9 @@ export async function formatByPrescription(prescriptionId: string) {
   await connectMongo();
   const prescription: PRESCRIPTION_TYPE = await Prescription.findById(
     prescriptionId
-  ).exec();
+  )
+    .populate("user")
+    .exec();
 
   if (!prescription) {
     return null;

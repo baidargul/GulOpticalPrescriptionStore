@@ -81,6 +81,7 @@ export async function POST(req: NextRequest) {
       isDefault: prescriptions.length === 0 ? true : false,
       customer: customer._id,
       prescription: data.prescription.prescription,
+      user: user._id,
     });
 
     if (!prescription) {

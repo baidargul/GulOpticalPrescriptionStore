@@ -39,7 +39,7 @@ const page = async (props: Props) => {
   console.log(data);
 
   return (
-    <div className="w-full select-none flex justify-center items-center">
+    <div className="w-full min-h-[100dvh] max-w-[100dvw] select-none flex justify-center items-center">
       <div className="bg-white max-w-[700px] p-6 rounded-lg shadow-md scale-90 sm:scale-100 relative">
         <div
           title="Goto Home"
@@ -100,7 +100,10 @@ const page = async (props: Props) => {
                   className="w-12 h-12 object-contain"
                 />
               </th>
-              <th className="border-none border-gray-300 px-4 py-2" colSpan={4}>
+              <th
+                className=" border-none border-gray-300 px-4 py-2"
+                colSpan={4}
+              >
                 Right
               </th>
               <th className="border-r border-gray-300 px-4 py-2" colSpan={4}>
@@ -343,7 +346,7 @@ const page = async (props: Props) => {
             <thead className="bg-white">
               <tr>
                 <th
-                  className="border-none border-gray-300 px-4 py-2"
+                  className="bg-zinc-900 text-white border-none border-gray-300 px-4 py-2"
                   colSpan={5}
                 >
                   Right
@@ -467,7 +470,10 @@ const page = async (props: Props) => {
           <table className="table-auto border-collapse border border-gray-300 w-full text-sm">
             <thead className="bg-white">
               <tr>
-                <th className="border-r border-gray-300 px-4 py-2" colSpan={5}>
+                <th
+                  className="bg-zinc-900 text-white border-r border-gray-300 px-4 py-2"
+                  colSpan={5}
+                >
                   Left
                 </th>
               </tr>
@@ -609,9 +615,9 @@ const page = async (props: Props) => {
           <LensOptions data={data} />
         </div>
 
-        <div className="flex justify-end items-center w-full mt-4">
-          <div className="w-full sm:w-fit">
-            {/* <Button onClick={() => {}}>Create</Button> */}
+        <div className="flex justify-end items-center w-full mt-4 text-right absolute bottom-2 right-2">
+          <div className="w-full sm:w-fit uppercase text-sm tracking-wide opacity-50">
+            Booked by: {data.prescription.user.name}
           </div>
         </div>
       </div>
