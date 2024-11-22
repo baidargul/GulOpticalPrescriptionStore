@@ -37,10 +37,10 @@ export default async function Home() {
       </div>
       <div className="flex flex-col justify-start items-center px-32">
         <div className="text-xs scale-75 text-nowrap w-fit">
-          This is just a tool we created, and will not act as website.
+          This is just a tool we created, and will not act as a website.
         </div>
         <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
-          Although we may introduct ecommerce solution in the future.
+          Although we may introduce the ecommerce solution in the future.
         </div>
         <div className="text-xs scale-75 text-nowrap w-fit -mt-1">
           <a
