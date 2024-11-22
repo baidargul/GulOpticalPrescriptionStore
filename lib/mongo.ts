@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Prescription, PRESCRIPTION_TYPE } from "@/models/Prescription";
 import { Customer } from "@/models/Customer";
+import { User } from "@/models/Users";
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -26,11 +27,15 @@ export async function formatByPrescription(prescriptionId: string) {
   await connectMongo();
   const prescription: PRESCRIPTION_TYPE = await Prescription.findById(
     prescriptionId
-  )
-    .populate("user")
-    .exec();
+  ).exec();
 
   if (!prescription) {
+    return null;
+  }
+
+  const user = await User.findById({ _id: prescription.user }).exec();
+
+  if (!user) {
     return null;
   }
 
@@ -44,6 +49,7 @@ export async function formatByPrescription(prescriptionId: string) {
   let final = {
     prescription,
     customer: customer,
+    user: user,
   };
 
   return final;
