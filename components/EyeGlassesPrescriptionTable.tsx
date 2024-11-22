@@ -79,7 +79,6 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
           props.phone
         );
         if (res.status === 200) {
-          console.log(res.data);
           setPrescription((prev: any) => {
             return {
               ...prev,

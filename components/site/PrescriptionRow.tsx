@@ -9,7 +9,6 @@ type Props = {
 };
 
 const PrescriptionRow = (props: Props) => {
-  console.log(prescription);
   return (
     <div className="flex flex-col gap-1 border-b py-2">
       <div className="flex justify-between items-center">

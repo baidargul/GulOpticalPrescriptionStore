@@ -48,7 +48,6 @@ export default function Page() {
   const handleSubmit = async () => {
     setIsFinding(true);
     const res: SERVER_RESPONSE = await serverActions.customer.list(phone);
-    console.log(res);
     if (res.status === 200) {
       setRows(res.data);
     } else {
