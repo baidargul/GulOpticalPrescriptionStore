@@ -32,6 +32,13 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify(response));
     }
 
+    if (!data.prescription.name) {
+      response.status = 400;
+      response.message = "Prescription name is required";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
+
     const user = await User.findById(isValid._id);
 
     if (!user) {

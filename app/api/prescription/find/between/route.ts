@@ -22,6 +22,15 @@ export async function GET(req: NextRequest) {
       return new Response(JSON.stringify(response));
     }
 
+    const user = await JWTUtils.isValidRequest(req, "token");
+
+    if (!user) {
+      response.status = 401;
+      response.message = "Unauthorized Request";
+      response.data = null;
+      return new Response(JSON.stringify(response));
+    }
+
     await connectMongo();
     const prescriptions = await Prescription.find({
       date: {
@@ -46,8 +55,6 @@ export async function GET(req: NextRequest) {
       }
       data.push(formatted);
     }
-
-    console.log(data);
 
     response.status = 200;
     response.message = `${prescriptions.length} prescriptions found`;
