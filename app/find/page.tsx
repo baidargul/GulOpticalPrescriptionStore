@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
 export default function Page() {
   const [isFinding, setIsFinding] = useState(false);
@@ -51,6 +52,7 @@ export default function Page() {
     if (res.status === 200) {
       setRows(res.data);
     } else {
+      toast.warning(`No record found for ${phone}`);
       setRows([]);
     }
     setIsFinding(false);

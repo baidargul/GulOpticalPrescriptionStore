@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 type Props = {};
 
@@ -37,6 +38,8 @@ const page = (props: Props) => {
     const response: SERVER_RESPONSE = await serverActions.user.create(user);
     if (response.status === 200) {
       setMode("login");
+    } else {
+      toast.error(response.message);
     }
   };
 
@@ -50,6 +53,8 @@ const page = (props: Props) => {
     if (response.status === 200) {
       setMode("register");
       router.push("/find");
+    } else {
+      toast.error(response.message);
     }
   };
 

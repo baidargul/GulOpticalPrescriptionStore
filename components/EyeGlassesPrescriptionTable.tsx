@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 type Props = {
   phone: string;
@@ -85,6 +86,8 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
               name: res.data?.customer.name || "",
             };
           });
+        } else {
+          toast.warning(res.message);
         }
       }
     };
@@ -101,6 +104,8 @@ const EyeGlassesPrescriptionTable = (props: Props) => {
 
     if (temp.status === 200) {
       router.push(`/find`);
+    } else {
+      toast.warning(temp.message);
     }
     setIsSaving(false);
   };
