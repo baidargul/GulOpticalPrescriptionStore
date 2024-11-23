@@ -25,6 +25,14 @@ async function create(user: USER_TYPE) {
     toast.warning("Phone is required");
   }
 
+  if (user.phone.length < 11) {
+    toast.warning(`Please enter a valid phone number, 11 digits`);
+  }
+
+  if (!user.password) {
+    toast.warning("Password is required");
+  }
+
   if (!user.name) {
     toast.warning("Name is required");
   }
@@ -51,6 +59,10 @@ async function activate(phone: string) {
 async function login(phone: string, password: string) {
   if (!phone) {
     toast.warning("Phone is required");
+  }
+
+  if (phone.length < 11) {
+    toast.warning(`Please enter a valid phone number, 11 digits`);
   }
 
   if (!password) {

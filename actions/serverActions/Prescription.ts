@@ -5,7 +5,6 @@ async function listAll() {
   const response = await axios.get("/api/prescriptions");
   return response.data;
 }
-
 async function fromRange(from: Date, to: Date) {
   if (!from) {
     toast.warning("From date is required");
@@ -19,8 +18,10 @@ async function fromRange(from: Date, to: Date) {
   );
   return response.data;
 }
-
 async function list(id: string) {
+  if (!id) {
+    toast.warning("Id is required");
+  }
   const response = await axios.get(`/api/prescription/find?_id=${id}`);
   return response.data;
 }

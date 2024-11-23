@@ -1,10 +1,4 @@
-import { JWTUtils } from "@/lib/jwtUtils";
-import {
-  coatingType,
-  materialType,
-  Prescription,
-  PRESCRIPTION_TYPE,
-} from "@/models/Prescription";
+import { PRESCRIPTION_TYPE } from "@/models/Prescription";
 import axios from "axios";
 import { toast } from "sonner";
 
@@ -17,6 +11,11 @@ async function list(phone: string) {
   if (!phone) {
     toast.warning("Phone is required");
   }
+
+  if (phone.length < 11) {
+    toast.warning(`Please enter a valid phone number, 11 digits`);
+  }
+
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const response = await axios.get(`/api/customers/phone?phone=${phone}`);
   // const response = await axios.get(`/api/customers/phone?phone=${phone}`);
@@ -26,6 +25,10 @@ async function list(phone: string) {
 async function addPrescription(phone: string, prescription: PRESCRIPTION_TYPE) {
   if (!phone) {
     toast.warning("Phone is required");
+  }
+
+  if (phone.length < 11) {
+    toast.warning(`Please enter a valid phone number, 11 digits`);
   }
 
   if (!prescription.name) {
